@@ -1,6 +1,7 @@
-# ControlNet-for-Any-Basemodel
+# ControlNet-for-Any-Basemodel [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1BI0TobTdjTI1VBSTjLXKOfh6Ps7uj6Ye?usp=sharing)
 
 This repository provides the simplest tutorial code for using ControlNet with basemodel in the diffuser framework. Our work builds highly on other excellent works. Although theses works have made some attemptes, there is no tutorial for supporting diverse ControlNet in diffusers.
+
 
 
 # Instruction
