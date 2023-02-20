@@ -72,7 +72,10 @@ image = pipe(prompt="1gril,masterpiece,graden", controlnet_hint=pose_image).imag
 image.save("generated.png")
 ```
 
-The generated result may not be good enough as the pose is kind of hard. So to make sure everything goes well, we suggest to generate a normal pose via [PoseMaker](https://huggingface.co/spaces/jonigata/PoseMaker).
+The generated result may not be good enough as the pose is kind of hard. So to make sure everything goes well, we suggest to generate a normal pose via [PoseMaker](https://huggingface.co/spaces/jonigata/PoseMaker) or use our provided pose image in ./images/pose.png.
+
+<img src="https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/images/pose.png" width="25%" height="25%"> <img src="https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/images/generated.png" width="25%" height="25%">
+
 
 # Acknowledgement
 We first thanks the author of [ControlNet](https://github.com/lllyasviel/ControlNet) for such a great work, our converting code is borrowed from [here](https://github.com/lllyasviel/ControlNet/discussions/12). We are also appreciated the contributions from this [pull request](https://github.com/huggingface/diffusers/pull/2407) in diffusers, so that we can load ControlNet into diffusers.
