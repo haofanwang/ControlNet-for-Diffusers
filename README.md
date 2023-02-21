@@ -3,7 +3,6 @@
 This repository provides the simplest tutorial code for using ControlNet with basemodel in the diffuser framework. Our work builds highly on other excellent works. Although theses works have made some attemptes, there is no tutorial for supporting diverse ControlNet in diffusers.
 
 
-
 # Instruction
 Our goal is to replace the basemodel of ControlNet and infer in diffusers framework. The original [ControlNet](https://github.com/lllyasviel/ControlNet) is trained in pytorch_lightning, and the [released weights](https://huggingface.co/lllyasviel/ControlNet/tree/main/models) with only [stable-diffusion-1.5](https://huggingface.co/runwayml/stable-diffusion-v1-5) as basemodel. However, it is more flexible for users to adopt their own basemodel instead of sd-1.5. Now, let's take [anything-v3](https://huggingface.co/Linaqruf/anything-v3.0/tree/main) as an example. We will show you how to achieve this (ControlNet-AnythingV3) step by step.
 
@@ -79,5 +78,62 @@ The generated result may not be good enough as the pose is kind of hard. So to m
 <img src="https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/images/pose.png" width="25%" height="25%"> <img src="https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/images/generated.png" width="25%" height="25%">
 
 
+# ControlNet + Inpaint
+
+This is to support ControlNet with the ability to only modify a target region instead of full image just like [stable-diffusion-inpainting](https://huggingface.co/runwayml/stable-diffusion-inpainting).
+
+We have provided the [required pipeline](https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/pipeline_stable_diffusion_controlnet_inpaint.py) for usage. But please note that this file is fragile without complete testing, we will consider support it in diffusers framework formally later.
+
+```bash
+# assume you already know the absolute path of installed diffusers
+cp pipeline_stable_diffusion_controlnet_inpaint.py  PATH/pipelines/stable_diffusion
+```
+
+Then, you need to import this new added pipeline in corresponding files
+```
+PATH/pipelines/__init__.py
+PATH/__init__.py
+```
+
+Now, we can run
+
+```
+import torch
+from diffusers.utils import load_image
+from diffusers import StableDiffusionInpaintPipeline, StableDiffusionControlNetInpaintPipeline
+
+# we have downloaded models locally, you can also load from huggingface
+# control_sd15_seg is converted from control_sd15_seg.safetensors using instructions above
+pipe_control = StableDiffusionControlNetInpaintPipeline.from_pretrained("./diffusers/control_sd15_seg",torch_dtype=torch.float16).to('cuda')
+pipe_inpaint = StableDiffusionInpaintPipeline.from_pretrained("./diffusers/stable-diffusion-inpainting",torch_dtype=torch.float16).to('cuda')
+
+# yes, we can directly replace the UNet
+pipe_control.unet = pipe_inpaint.unet
+pipe_control.unet.in_channels = 4
+
+# we also the same example as stable-diffusion-inpainting
+image = load_image("https://raw.githubusercontent.com/CompVis/latent-diffusion/main/data/inpainting_examples/overture-creations-5sI6fQgYIuo.png")
+mask = load_image("https://raw.githubusercontent.com/CompVis/latent-diffusion/main/data/inpainting_examples/overture-creations-5sI6fQgYIuo_mask.png")
+
+# the segmentation result is generated from https://huggingface.co/spaces/hysts/ControlNet
+control_image = load_image('tmptvkkr0tg.png')
+
+image = pipe_control(prompt="Face of a yellow cat, high resolution, sitting on a park bench", 
+                     negative_prompt="lowres, bad anatomy, worst quality, low quality",
+                     controlnet_hint=control_image, 
+                     image=image,
+                     mask_image=mask,
+                     num_inference_steps=100).images[0]
+
+image.save("inpaint_seg.jpg")
+```
+
+The following images are original image, mask image, segmentation (control hint) and generated new image.
+
+<img src="https://raw.githubusercontent.com/CompVis/latent-diffusion/main/data/inpainting_examples/overture-creations-5sI6fQgYIuo.png" width="20%" height="20%"> <img src="https://raw.githubusercontent.com/CompVis/latent-diffusion/main/data/inpainting_examples/overture-creations-5sI6fQgYIuo_mask.png" width="20%" height="20%"> <img src="https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/images/tmptvkkr0tg.png" width="20%" height="20%"> <img src="https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/images/inpaint_seg.jpg" width="20%" height="20%">
+
 # Acknowledgement
 We first thanks the author of [ControlNet](https://github.com/lllyasviel/ControlNet) for such a great work, our converting code is borrowed from [here](https://github.com/lllyasviel/ControlNet/discussions/12). We are also appreciated the contributions from this [pull request](https://github.com/huggingface/diffusers/pull/2407) in diffusers, so that we can load ControlNet into diffusers.
+
+# Contact
+The repo is still under active development, if you have any issue when using it, feel free to open an issue.
