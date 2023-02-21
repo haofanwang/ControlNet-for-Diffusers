@@ -3,7 +3,7 @@
 This repository provides the simplest tutorial code for using ControlNet with basemodel in the diffuser framework. Our work builds highly on other excellent works. Although theses works have made some attemptes, there is no tutorial for supporting diverse ControlNet in diffusers.
 
 
-# Instruction
+# ControlNet + Anything-v3
 Our goal is to replace the basemodel of ControlNet and infer in diffusers framework. The original [ControlNet](https://github.com/lllyasviel/ControlNet) is trained in pytorch_lightning, and the [released weights](https://huggingface.co/lllyasviel/ControlNet/tree/main/models) with only [stable-diffusion-1.5](https://huggingface.co/runwayml/stable-diffusion-v1-5) as basemodel. However, it is more flexible for users to adopt their own basemodel instead of sd-1.5. Now, let's take [anything-v3](https://huggingface.co/Linaqruf/anything-v3.0/tree/main) as an example. We will show you how to achieve this (ControlNet-AnythingV3) step by step.
 
 ### (1) The first step is to replace basemodel. 
@@ -78,7 +78,7 @@ The generated result may not be good enough as the pose is kind of hard. So to m
 <img src="https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/images/pose.png" width="25%" height="25%"> <img src="https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/images/generated.png" width="25%" height="25%">
 
 
-# ControlNet + Inpaint
+# ControlNet + Inpainting
 
 This is to support ControlNet with the ability to only modify a target region instead of full image just like [stable-diffusion-inpainting](https://huggingface.co/runwayml/stable-diffusion-inpainting).
 
