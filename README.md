@@ -2,6 +2,8 @@
 
 This repository provides the simplest tutorial code for developers using ControlNet with basemodel in the diffuser framework instead of WebUI. Our work builds highly on other excellent works. Although theses works have made some attemptes, there is no tutorial for supporting diverse ControlNet in diffusers.
 
+<center><img src="https://github.com/lllyasviel/ControlNet/raw/main/github_page/he.png" width="100%" height="100%"></center> 
+
 We have also supported [T2I-Adapter-for-Diffusers](https://github.com/haofanwang/T2I-Adapter-for-Diffusers), [Lora-for-Diffusers](https://github.com/haofanwang/Lora-for-Diffusers).
 
 # ControlNet + Anything-v3
