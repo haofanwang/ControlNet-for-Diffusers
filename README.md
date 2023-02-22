@@ -133,6 +133,28 @@ The following images are original image, mask image, segmentation (control hint)
 
 <img src="https://raw.githubusercontent.com/CompVis/latent-diffusion/main/data/inpainting_examples/overture-creations-5sI6fQgYIuo.png" width="20%" height="20%"> <img src="https://raw.githubusercontent.com/CompVis/latent-diffusion/main/data/inpainting_examples/overture-creations-5sI6fQgYIuo_mask.png" width="20%" height="20%"> <img src="https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/images/tmptvkkr0tg.png" width="20%" height="20%"> <img src="https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/images/inpaint_seg.jpg" width="20%" height="20%">
 
+You can also use pose as control hint. But please note that it is suggested to use OpenPose format, which is consistent to the training process. If you just want to test a few images without install OpenPose locally, you can directly use [online demo of ControlNet](https://huggingface.co/spaces/hysts/ControlNet) to generate pose image given the resized 512x512 input.
+
+```
+image = load_image("./images/pose_image.jpg")
+mask = load_image("./images/pose_mask.jpg")
+pose_image = load_image('./images/pose_hint.png')
+
+image = pipe_control(prompt="Face of a young boy smiling", 
+                     negative_prompt="lowres, bad anatomy, worst quality, low quality",
+                     controlnet_hint=pose_image, 
+                     image=image,
+                     mask_image=mask,
+                     num_inference_steps=100).images[0]
+
+image.save("inpaint_pos.jpg")
+```
+
+<img src="https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/images/pose_image.jpg" width="20%" height="20%"> <img src="https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/images/pose_mask.jpg" width="20%" height="20%"> <img src="https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/images/pose_hint.png" width="20%" height="20%"> <img src="https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/images/inpaint_pos.jpg" width="20%" height="20%">
+
+
+
+
 # Acknowledgement
 We first thanks the author of [ControlNet](https://github.com/lllyasviel/ControlNet) for such a great work, our converting code is borrowed from [here](https://github.com/lllyasviel/ControlNet/discussions/12). We are also appreciated the contributions from this [pull request](https://github.com/huggingface/diffusers/pull/2407) in diffusers, so that we can load ControlNet into diffusers.
 
