@@ -154,8 +154,7 @@ image.save("inpaint_pos.jpg")
 
 <img src="https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/images/pose_image.jpg" width="20%" height="20%"> <img src="https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/images/pose_mask.jpg" width="20%" height="20%"> <img src="https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/images/pose_hint.png" width="20%" height="20%"> <img src="https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/images/inpaint_pos.jpg" width="20%" height="20%">
 
-
-
+I will further add a demo with instance segmentation (mask) and openpose detector soon!
 
 # Acknowledgement
 We first thanks the author of [ControlNet](https://github.com/lllyasviel/ControlNet) for such a great work, our converting code is borrowed from [here](https://github.com/lllyasviel/ControlNet/discussions/12). We are also appreciated the contributions from this [pull request](https://github.com/huggingface/diffusers/pull/2407) in diffusers, so that we can load ControlNet into diffusers.
