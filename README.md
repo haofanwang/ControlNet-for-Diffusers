@@ -83,7 +83,7 @@ The generated result may not be good enough as the pose is kind of hard. So to m
 
 # ControlNet + Inpainting
 
-This is to support ControlNet with the ability to only modify a target region instead of full image just like [stable-diffusion-inpainting](https://huggingface.co/runwayml/stable-diffusion-inpainting).
+This is to support ControlNet with the ability to only modify a target region instead of full image just like [stable-diffusion-inpainting](https://huggingface.co/runwayml/stable-diffusion-inpainting). For now, we provide the condition (pose, segmentation map) beforehands, but we will add detectors soon so that the process can be automated.
 
 We have provided the [required pipeline](https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/pipeline_stable_diffusion_controlnet_inpaint.py) for usage. But please note that this file is fragile without complete testing, we will consider support it in diffusers framework formally later.
 
