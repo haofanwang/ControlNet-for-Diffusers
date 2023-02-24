@@ -4,7 +4,7 @@ This repository provides the simplest tutorial code for developers using Control
 
 <center><img src="https://github.com/lllyasviel/ControlNet/raw/main/github_page/he.png" width="100%" height="100%"></center> 
 
-We have also supported [T2I-Adapter-for-Diffusers](https://github.com/haofanwang/T2I-Adapter-for-Diffusers), [Lora-for-Diffusers](https://github.com/haofanwang/Lora-for-Diffusers).
+We have also supported [T2I-Adapter-for-Diffusers](https://github.com/haofanwang/T2I-Adapter-for-Diffusers), [Lora-for-Diffusers](https://github.com/haofanwang/Lora-for-Diffusers). Don't be mean to give us a star if it is helful to you.
 
 # ControlNet + Anything-v3
 Our goal is to replace the basemodel of ControlNet and infer in diffusers framework. The original [ControlNet](https://github.com/lllyasviel/ControlNet) is trained in pytorch_lightning, and the [released weights](https://huggingface.co/lllyasviel/ControlNet/tree/main/models) with only [stable-diffusion-1.5](https://huggingface.co/runwayml/stable-diffusion-v1-5) as basemodel. However, it is more flexible for users to adopt their own basemodel instead of sd-1.5. Now, let's take [anything-v3](https://huggingface.co/Linaqruf/anything-v3.0/tree/main) as an example. We will show you how to achieve this (ControlNet-AnythingV3) step by step. We do provide a Colab demo [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1BI0TobTdjTI1VBSTjLXKOfh6Ps7uj6Ye?usp=sharing), but it only works for Colab Pro users with larger RAM.
