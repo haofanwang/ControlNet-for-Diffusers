@@ -67,7 +67,7 @@ We have the saved model in control_any3_openpose. Now we can test it as regularl
 from diffusers import StableDiffusionControlNetPipeline
 from diffusers.utils import load_image
 
-pose_image = load_image('https://i.imgur.com/x75sMb7.png')
+pose_image = load_image('https://huggingface.co/takuma104/controlnet_dev/resolve/main/pose.png')
 pipe = StableDiffusionControlNetPipeline.from_pretrained("control_any3_openpose").to("cuda")
 
 pipe.safety_checker = lambda images, clip_input: (images, False)
