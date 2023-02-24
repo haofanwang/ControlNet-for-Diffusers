@@ -50,8 +50,8 @@ If you want to try with other models, you can just define your own path_sd15_wit
 Gratefully, [Takuma Mori](https://github.com/takuma104) has supported it in this recent [PR](https://github.com/huggingface/diffusers/pull/2407), so that we can easily achieve this. As it is still under-devlopement, so it may be unstable.
 
 ```bash
-pip install "git+https://github.com/takuma104/diffusers.git@controlnet"
-git clone https://github.com/takuma104/diffusers.git
+pip install "git+https://github.com/takuma104/diffusers.git@9a37409663a53f775fa380db332d37d7ea75c915"
+git clone https://github.com/takuma104/diffusers.git@9a37409663a53f775fa380db332d37d7ea75c915
 cd diffusers
 git checkout controlnet
 ```
