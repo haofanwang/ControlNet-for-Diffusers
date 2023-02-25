@@ -47,13 +47,13 @@ If you want to try with other models, you can just define your own path_sd15_wit
 
 ### (2) The second step is to convert into diffusers
 
-Gratefully, [Takuma Mori](https://github.com/takuma104) has supported it in this recent [PR](https://github.com/huggingface/diffusers/pull/2407), so that we can easily achieve this. As it is still under-devlopement, so it may be unstable.
+Gratefully, [Takuma Mori](https://github.com/takuma104) has supported it in this recent [PR](https://github.com/huggingface/diffusers/pull/2407), so that we can easily achieve this. As it is still under-devlopement, so it may be unstable, thus we have to use a specific commit version.
 
 ```bash
-pip install "git+https://github.com/takuma104/diffusers.git@9a37409663a53f775fa380db332d37d7ea75c915"
-git clone https://github.com/takuma104/diffusers.git@9a37409663a53f775fa380db332d37d7ea75c915
+git clone https://github.com/takuma104/diffusers.git
 cd diffusers
-git checkout controlnet
+git checkout 9a37409663a53f775fa380db332d37d7ea75c915
+pip install .
 ```
 
 Given the path of the generated model in step (1), run
