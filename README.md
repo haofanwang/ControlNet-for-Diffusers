@@ -83,9 +83,9 @@ The generated result may not be good enough as the pose is kind of hard. So to m
 
 # ControlNet + Inpainting
 
-This is to support ControlNet with the ability to only modify a target region instead of full image just like [stable-diffusion-inpainting](https://huggingface.co/runwayml/stable-diffusion-inpainting). For now, we provide the condition (pose, segmentation map) beforehands, but we will add detectors soon so that the process can be automated.
+This is to support ControlNet with the ability to only modify a target region instead of full image just like [stable-diffusion-inpainting](https://huggingface.co/runwayml/stable-diffusion-inpainting). For now, we provide the condition (pose, segmentation map) beforehands, but you can use adopt pre-trained detector used in ControlNet.
 
-We have provided the [required pipeline](https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/pipeline_stable_diffusion_controlnet_inpaint.py) for usage. But please note that this file is fragile without complete testing, we will consider support it in diffusers framework formally later.
+We have provided the [required pipeline](https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/pipeline_stable_diffusion_controlnet_inpaint.py) for usage. But please note that this file is fragile without complete testing, we will consider support it in diffusers framework formally later. Also, we find that ControlNet (sd1.5 based) is not compatible to [stable-diffusion-2-inpainting](https://huggingface.co/stabilityai/stable-diffusion-2-inpainting), as some layers have different modules and dimension, if you forcibly load the weights and skip those unmatching layers, the result will be bad
 
 ```bash
 # assume you already know the absolute path of installed diffusers
@@ -154,7 +154,8 @@ image.save("inpaint_pos.jpg")
 
 <img src="https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/images/pose_image.jpg" width="20%" height="20%"> <img src="https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/images/pose_mask.jpg" width="20%" height="20%"> <img src="https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/images/pose_hint.png" width="20%" height="20%"> <img src="https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/images/inpaint_pos.jpg" width="20%" height="20%">
 
-I will further add a demo with instance segmentation (mask) and openpose detector soon!
+# ControlNet + Inpainting + Img2Img
+We have uploaded [pipeline_stable_diffusion_controlnet_inpaint_img2img.py](https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/pipeline_stable_diffusion_controlnet_inpaint_img2img.py) to support img2img. You can follow the same instruction as [this section](https://github.com/haofanwang/ControlNet-for-Diffusers#controlnet--inpainting).
 
 # Acknowledgement
 We first thanks the author of [ControlNet](https://github.com/lllyasviel/ControlNet) for such a great work, our converting code is borrowed from [here](https://github.com/lllyasviel/ControlNet/discussions/12). We are also appreciated the contributions from this [pull request](https://github.com/huggingface/diffusers/pull/2407) in diffusers, so that we can load ControlNet into diffusers.
