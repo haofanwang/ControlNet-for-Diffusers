@@ -165,8 +165,8 @@ control1 = controlnet1(latent_model_input, t, encoder_hidden_states=prompt_embed
 control2 = controlnet2(latent_model_input, t, encoder_hidden_states=prompt_embeds, controlnet_hint=controlnet_hint2)
 
 # please note that the weights should be adjusted accordingly
-control1_weight = 1.25
-control2_weight = 1.00
+control1_weight = 1.00 # control_any3_openpose
+control2_weight = 0.50 # control_sd15_depth
 
 merged_control = []
 for i in range(len(control1)):
