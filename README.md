@@ -47,7 +47,7 @@ If you want to try with other models, you can just define your own path_sd15_wit
 
 ### (2) The second step is to convert into diffusers
 
-Gratefully, [Takuma Mori](https://github.com/takuma104) has supported it in this recent [PR](https://github.com/huggingface/diffusers/pull/2407), so that we can easily achieve this. As it is still under-devlopement, so it may be unstable, thus we have to use a specific commit version.
+Gratefully, [Takuma Mori](https://github.com/takuma104) has supported it in this recent [PR](https://github.com/huggingface/diffusers/pull/2407), so that we can easily achieve this. As it is still under-devlopement, so it may be unstable, thus we have to use a specific commit version. I will reformat this section once the PR is mergered into diffusers.
 
 ```bash
 git clone https://github.com/takuma104/diffusers.git
