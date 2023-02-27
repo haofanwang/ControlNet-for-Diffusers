@@ -158,7 +158,27 @@ image.save("inpaint_pos.jpg")
 We have uploaded [pipeline_stable_diffusion_controlnet_inpaint_img2img.py](https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/pipeline_stable_diffusion_controlnet_inpaint_img2img.py) to support img2img. You can follow the same instruction as [this section](https://github.com/haofanwang/ControlNet-for-Diffusers#controlnet--inpainting).
 
 # Multi-ControlNet
-Similar to [T2I-Adapter](https://github.com/TencentARC/T2I-Adapter), ControlNet also supports multiple control images as input. The idea behind is simple, as the base model is frozen, we can combine the outputs from ControlNet1 and ControlNet2, and use it as input to UNet.
+Similar to [T2I-Adapter](https://github.com/TencentARC/T2I-Adapter), ControlNet also supports multiple control images as input. The idea behind is simple, as the base model is frozen, we can combine the outputs from ControlNet1 and ControlNet2, and use it as input to UNet. Here, we provide pseudocode for reference. You need to modify the pipeline as below.
+
+```
+control1 = controlnet1(latent_model_input, t, encoder_hidden_states=prompt_embeds, controlnet_hint=controlnet_hint1)
+control2 = controlnet2(latent_model_input, t, encoder_hidden_states=prompt_embeds, controlnet_hint=controlnet_hint2)
+
+# please note that the weights should be adjusted accordingly
+control1_weight = 1.25
+control2_weight = 1.00
+
+merged_control = []
+for i in range(len(control1)):
+    merged_control.append(control1_weight*control[i]+control2_weight*control_1[i])
+control = merged_control
+
+noise_pred = unet(latent_model_input, t, encoder_hidden_states=prompt_embeds, cross_attention_kwargs=cross_attention_kwargs, control=control).sample
+```
+
+Here is an example of Multi-ControlNet, where we use pose and depth map are control hints. The test images are both credited to [T2I-Adapter](https://github.com/TencentARC/T2I-Adapter).
+
+<img src="https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/images/person_keypose.png" width="20%" height="20%"> <img src="https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/images/desk_depth.png" width="20%" height="20%"> <img src="https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/images/controlnet_test_pose_multi.jpeg" width="20%" height="20%">
 
 # Acknowledgement
 We first thanks the author of [ControlNet](https://github.com/lllyasviel/ControlNet) for such a great work, our converting code is borrowed from [here](https://github.com/lllyasviel/ControlNet/discussions/12). We are also appreciated the contributions from this [pull request](https://github.com/huggingface/diffusers/pull/2407) in diffusers, so that we can load ControlNet into diffusers.
