@@ -157,7 +157,7 @@ image.save("inpaint_pos.jpg")
 # ControlNet + Inpainting + Img2Img
 We have uploaded [pipeline_stable_diffusion_controlnet_inpaint_img2img.py](https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/pipeline_stable_diffusion_controlnet_inpaint_img2img.py) to support img2img. You can follow the same instruction as [this section](https://github.com/haofanwang/ControlNet-for-Diffusers#controlnet--inpainting).
 
-# Multi-ControlNet
+# Multi-ControlNet (experimental)
 Similar to [T2I-Adapter](https://github.com/TencentARC/T2I-Adapter), ControlNet also supports multiple control images as input. The idea behind is simple, as the base model is frozen, we can combine the outputs from ControlNet1 and ControlNet2, and use it as input to UNet. Here, we provide pseudocode for reference. You need to modify the pipeline as below.
 
 ```
