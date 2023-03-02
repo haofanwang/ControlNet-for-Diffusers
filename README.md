@@ -43,7 +43,7 @@ If successful, you will get the new model. This model can already be used in Con
 models/control_any3_openpose.pth
  ```
 
-If you want to try with other models, you can just define your own path_sd15_with_control and path_input.
+If you want to try with other models, you can just define your own path_sd15_with_control and path_input. If the path_input is trained with diffusers, you can use [convert_diffusers_to_original_stable_diffusion.py](https://github.com/huggingface/diffusers/blob/eadf0e2555cfa19b033e02de53553f71ac33536f/scripts/convert_diffusers_to_original_stable_diffusion.py#L264) to convert it into safetensors first.
 
 ### (2) The second step is to convert into diffusers
 
