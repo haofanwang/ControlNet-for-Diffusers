@@ -180,6 +180,9 @@ Here is an example of Multi-ControlNet, where we use pose and depth map are cont
 
 <img src="https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/images/person_keypose.png" width="20%" height="20%"> <img src="https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/images/desk_depth.png" width="20%" height="20%"> <img src="https://github.com/haofanwang/ControlNet-for-Diffusers/blob/main/images/controlnet_test_pose_multi1.jpeg" width="20%" height="20%">
 
+# Train your own ControlNet
+In order to avoid this repo is too bloated, we provide tutorial about training in [Train-ControlNet-in-Diffusers](https://github.com/haofanwang/Train-ControlNet-in-Diffusers).
+
 # Acknowledgement
 We first thanks the author of [ControlNet](https://github.com/lllyasviel/ControlNet) for such a great work, our converting code is borrowed from [here](https://github.com/lllyasviel/ControlNet/discussions/12). We are also appreciated the contributions from this [pull request](https://github.com/huggingface/diffusers/pull/2407) in diffusers, so that we can load ControlNet into diffusers.
 
