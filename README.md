@@ -63,7 +63,7 @@ python ./scripts/convert_controlnet_to_diffusers.py --checkpoint_path control_an
 
 We have the saved model in control_any3_openpose. Now we can test it as regularly.
 
-```bash
+```python
 from diffusers import StableDiffusionControlNetPipeline
 from diffusers.utils import load_image
 
@@ -100,7 +100,7 @@ PATH/__init__.py
 
 Now, we can run
 
-```
+```python
 import torch
 from diffusers.utils import load_image
 from diffusers import StableDiffusionInpaintPipeline, StableDiffusionControlNetInpaintPipeline
@@ -137,7 +137,7 @@ The following images are original image, mask image, segmentation (control hint)
 
 You can also use pose as control hint. But please note that it is suggested to use OpenPose format, which is consistent to the training process. If you just want to test a few images without install OpenPose locally, you can directly use [online demo of ControlNet](https://huggingface.co/spaces/hysts/ControlNet) to generate pose image given the resized 512x512 input.
 
-```
+```python
 image = load_image("./images/pose_image.jpg")
 mask = load_image("./images/pose_mask.jpg")
 pose_image = load_image('./images/pose_hint.png')
@@ -160,7 +160,7 @@ We have uploaded [pipeline_stable_diffusion_controlnet_inpaint_img2img.py](https
 # Multi-ControlNet (experimental)
 Similar to [T2I-Adapter](https://github.com/TencentARC/T2I-Adapter), ControlNet also supports multiple control images as input. The idea behind is simple, as the base model is frozen, we can combine the outputs from ControlNet1 and ControlNet2, and use it as input to UNet. Here, we provide pseudocode for reference. You need to modify the pipeline as below.
 
-```
+```python
 control1 = controlnet1(latent_model_input, t, encoder_hidden_states=prompt_embeds, controlnet_hint=controlnet_hint1)
 control2 = controlnet2(latent_model_input, t, encoder_hidden_states=prompt_embeds, controlnet_hint=controlnet_hint2)
 
