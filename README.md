@@ -1,5 +1,7 @@
 # ControlNet-for-Any-Basemodel [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1BI0TobTdjTI1VBSTjLXKOfh6Ps7uj6Ye?usp=sharing)
 
+### This project is deprecated, it should still work, but may not be compatible with the latest packages. I will rebuild this tool soon, but if you have any urgent problem, please contact me via haofanwang.ai@gmail.com directly.
+
 This repository provides the simplest tutorial code for developers using ControlNet with basemodel in the diffuser framework instead of WebUI. Our work builds highly on other excellent works. Although theses works have made some attemptes, there is no tutorial for supporting diverse ControlNet in diffusers.
 
 <center><img src="https://github.com/lllyasviel/ControlNet/raw/main/github_page/he.png" width="100%" height="100%"></center> 
